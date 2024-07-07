@@ -24,16 +24,16 @@ public class Compt {
     private String type_compt;
     private float sold;
     private LocalDate date_creation;
-
+    private  boolean Fermee;
 
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
 
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "IdTransaction")
-    private Set<Transaction> transactions;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "IdTransaction")
+//    private Set<Transaction> transactions;
 
 //    @OneToMany(mappedBy = "utilisateur")
 //    @JsonIgnore

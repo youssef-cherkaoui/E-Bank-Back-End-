@@ -17,6 +17,6 @@ public interface ComptService {
 
     Float getSoldById(Integer id);
 
-    List<Transaction> getHistoriqueTransaction(Integer idcomp);
+    void fermerCompte(Integer id, String raisonFermeture);
 }
 

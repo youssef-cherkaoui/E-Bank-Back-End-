@@ -19,7 +19,7 @@ public class ComptServiceImpl implements ComptService {
     @Autowired
     private UserRepository userRepository;
     private UserServiceImpl userService;
-    private TransactionService transactionService;
+
 
     @Override
     public Compt creatcompt(Compt compte) {
@@ -54,9 +54,20 @@ public class ComptServiceImpl implements ComptService {
 
 
     @Override
-    public List<Transaction> getHistoriqueTransaction(Integer idcompt) {
-        return transactionService.getTransactionsByIdCompt(idcompt);
+    public void fermerCompte(Integer id, String raisonFermeture) {
+        Compt compte = comptRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Compte not found"));
+
+        // Logique pour fermer le compte
+        System.out.println("Fermeture du compte avec ID: " + id);
+        System.out.println("Raison de la fermeture: " + raisonFermeture);
+
+        compte.setFermee(true);
+        //ComptService.save(compte);
+        comptRepository.save(compte);
     }
+
+
 
 
 

@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/compt")
 public class ComptController {
 
     @Autowired
-    private ComptServiceImpl comptService;
+     ComptServiceImpl comptService;
 
     @GetMapping("/")
     public List<Compt> getCompts() {
@@ -40,6 +41,17 @@ public class ComptController {
     @GetMapping("/{id}/sold")
     public Float getComptSold(@PathVariable Integer id) {
         return comptService.getSoldById(id);
+    }
+
+
+    @PostMapping("/fermer")
+    public String fermerCompte(@RequestBody Map<String, Object> payload) {
+        int idcompt = ((Number) payload.get("idcompt")).intValue();
+        String raisonFermeture = (String) payload.get("raisonFermeture");
+
+        comptService.fermerCompte(idcompt, raisonFermeture);
+
+        return "Compte fermé avec succès";
     }
 
 }
