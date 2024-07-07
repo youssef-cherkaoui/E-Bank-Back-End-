@@ -1,7 +1,7 @@
 package com.Banke.Controller;
 
 import com.Banke.Model.Compt;
-import com.Banke.Service.ComptService;
+import com.Banke.Service.ComptServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class ComptController {
 
     @Autowired
-    private ComptService comptService;
+    private ComptServiceImpl comptService;
 
     @GetMapping("/")
     public List<Compt> getCompts() {

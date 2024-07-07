@@ -1,48 +1,22 @@
 package com.Banke.Service;
 
 import com.Banke.Model.Compt;
-import com.Banke.Repository.ComptRepository;
-import com.Banke.Repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.hibernate.Transaction;
 
-import java.time.LocalDate;
 import java.util.List;
 
-@Service
-public class ComptService {
+public interface ComptService {
 
-    @Autowired
-    private ComptRepository comptRepository;
+    Compt creatcompt(Compt compte);
 
-    @Autowired
-    private UserRepository userRepository;
-    private UserService userService;
+    Compt getcomptbyid(Integer id);
 
-    public Compt creatcompt(Compt compte) {
-        Compt compt = new Compt();
-        compt.setType_compt(compte.getType_compt());
-        compt.setSold(compte.getSold());
-        compt.setDate_creation(LocalDate.now());
-        compt.setUtilisateur(compte.getUtilisateur());
-        return comptRepository.save(compt);
-    }
+    List<Compt> getAllcompt();
 
-    public Compt getcomptbyid(Integer id) {
-        return comptRepository.findById(id).orElse(null);
-    }
+    void deletecompt(Integer id);
 
-    public List<Compt> getAllcompt() {
-        return comptRepository.findAll();
-    }
+    Float getSoldById(Integer id);
 
-    public void deletecompt(Integer id) {
-        comptRepository.deleteById(id);
-    }
-    public Float getSoldById(Integer id) {
-        Compt compt = comptRepository.findById(id).orElse(null);
-        return (compt != null) ? compt.getSold() : null;
-    }
-
-
+    List<Transaction> getHistoriqueTransaction(Integer idcomp);
 }
+
