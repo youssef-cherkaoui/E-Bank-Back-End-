@@ -27,7 +27,7 @@ public class AuthenticationService {
                 .Name(request.getName())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.USER)
+                .role(request.getRole())
                 .build();
         userdao.save(user);
 
